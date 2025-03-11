@@ -1,0 +1,9 @@
+/* write your css here */
+.header {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }

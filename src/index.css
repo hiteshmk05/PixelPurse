@@ -1,0 +1,165 @@
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+*{
+    margin:0;
+    padding: 0;
+}
+ 
+ /* PixelPurse Title Font */
+ .pixelpurse-title {
+     font-family: 'Pixelify Sans', sans-serif;
+     font-size: 1.2em;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Add the pixelated animation effect */
+ 
+ /* Prevent extra vertical scrollbar */
+ html,body {
+    height: 100%;
+
+     /* overflow-y: auto; */
+     overflow-x: hidden;
+     /* overflow-y: scroll; */
+     
+ }
+
+ body {
+    background-color: #E6E0FF;
+    /* margin: 0; */
+    /* padding: 0; */
+    overflow-y: scroll;
+    /* box-sizing: border-box; */
+    /* min-height: 100vh; Prevents content from overflowing */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+ /* body{
+    overflow-y: auto;
+ } */
+ 
+ /* Fix sidebar/content layout issues */
+
+
+ /* Keyframe for pixelated text-shadow effect */
+@keyframes pixelated-animation {
+    0% { text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); }
+    50% { text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); }
+    100% { text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); }
+}
+
+/* Pixelated Animation */
+.pixelated-animation {
+    animation: pixelated-animation 2s infinite;
+}
+
+/* Pixelated Background - Fixed Layout Issues */
+.pixelated-background {
+    position: relative; /* Make the background appear behind content */
+}
+
+.pixelated-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(200, 200, 200, 0.5) 25%, transparent 25%) -25px -25px,
+                linear-gradient(45deg, rgba(200, 200, 200, 0.5) 25%, transparent 25%) -25px -25px;
+    background-size: 30px 30px;
+    opacity: 0.5; /* Slightly reduce opacity */
+    animation: pixelate-background 30s linear infinite;
+
+    pointer-events: none; /* Allow clicks to pass through the background */
+}
+
+/* Ensures background animation moves smoothly */
+@keyframes pixelate-background {
+    0% {
+        background-position: 0 0, 50px 50px;
+    }
+    100% {
+        background-position: 50px 50px, 0 0;
+    }
+}
+
+/* Apply pixelated background only to elements with the class .pixelate */
+.pixelate {
+    position: relative;
+}
+
+.pixelate .pixelated-background::before {
+    display: block; /* Make sure the pixelated background is visible */
+}
+
+.unpixelated {
+    position: relative; /* Ensure the parent has a positioning context */
+}
+
+.unpixelated .pixelated-background::before {
+    display: none !important; /* Hide the pixelated background */
+    background: none !important; /* Remove any background */
+    opacity: 0 !important; /* Ensure it is fully transparent */
+    animation: none !important; /* Stop the animation */
+}
+
+/* Also ensure the .unpixelated class affects the text shadow */
+.unpixelated {
+    text-shadow: none !important; /* Remove any text shadow effect */
+    image-rendering: auto; /* Remove pixelation effect */
+}
+
+
+
+
+.pixel-loader {
+    width: 10px;
+    height: 10px;
+    background: #000000;
+    color: #000000;
+    margin: 80px auto;
+    box-shadow: 15px 15px 0 0,
+                -15px -15px 0 0,
+                15px -15px 0 0,
+                -15px 15px 0 0,
+                0 15px 0 0,
+                15px 0 0 0,
+                -15px 0 0 0,
+                0 -15px 0 0;
+    animation: anim 2s linear infinite;
+  }
+  
+  @keyframes anim {
+    0% {
+      -webkit-filter: hue-rotate(0deg);
+    }
+    50% {
+      box-shadow: 20px 20px 0 0,
+                  -20px -20px 0 0,
+                  20px -20px 0 0,
+                  -20px 20px 0 0,
+                  0 10px 0 0,
+                  10px 0 0 0,
+                  -10px 0 0 0,
+                  0 -10px 0 0;
+    }
+    
+    75% {
+      box-shadow: 20px 20px 0 0,
+                  -20px -20px 0 0,
+                  20px -20px 0 0,
+                  -20px 20px 0 0,
+                  0 10px 0 0,
+                  10px 0 0 0,
+                  -10px 0 0 0,
+                  0 -10px 0 0;
+    }
+    
+    100% {
+      transform: rotate(360deg);
+      -webkit-filter: hue-rotate(360deg);
+    }
+  }
