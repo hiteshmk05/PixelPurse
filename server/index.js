@@ -5,6 +5,7 @@ const userRoutes = require("./routes/UserRoutes");
 const categoryRoutes = require("./routes/CategoryRoutes");
 const expenseRoutes=require("./routes/ExpenseRoutes");
 const statsRoutes=require("./routes/StatsRoutes");
+const reviewRoutes=require("./routes/ReviewRoutes");
 const dotenv=require("dotenv");
 const cors=require("cors");
 
@@ -25,6 +26,7 @@ app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/stats",statsRoutes);
+app.use("/api/v1/review",reviewRoutes);
 
 
 app.listen(PORT, () => {
